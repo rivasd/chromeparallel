@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "ChromeClient.h"
 
 int main()
 {
