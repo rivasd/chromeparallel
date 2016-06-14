@@ -150,11 +150,15 @@
     </ClInclude>
     <ClInclude Include="..\inpout32.h" />
     <ClInclude Include="..\json.hpp" />
+    <ClInclude Include="ChromeClient.h" />
+    <ClInclude Include="inpout32.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ChromeClient.cpp" />
+    <ClCompile Include="ChromeClient.cpp" />
     <ClCompile Include="jspsychwinhost.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -166,6 +170,8 @@
   <ItemGroup>
     <None Include="..\com.cogcommtl.hardware.host.json" />
     <None Include="..\win_install.bat" />
+    <None Include="com.cogcommtl.hardware.host.json" />
+    <None Include="win_install.bat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
