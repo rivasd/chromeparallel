@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "document.h"
 
 namespace ChromeClient 
 {
@@ -11,4 +12,6 @@ namespace ChromeClient
 	unsigned int readMessLength();
 
 	chromeMess fetchMessage(unsigned int length);
+
+	bool sendMessageToExt(const rapidjson::Document& jsonMess);
 }

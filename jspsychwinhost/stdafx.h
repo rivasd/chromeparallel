@@ -9,6 +9,15 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include <iostream>
+#include <io.h>
+#include <fcntl.h>
+#include <stdint.h>
+#include <string>
+#include "document.h"
+#include "writer.h"
+#include "stringbuffer.h"
+
 
 
 

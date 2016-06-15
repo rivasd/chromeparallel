@@ -24,15 +24,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ChromeClient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inpout32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\json.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChromeClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,21 +41,20 @@
     <ClCompile Include="jspsychwinhost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ChromeClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ChromeClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\com.cogcommtl.hardware.host.json" />
-    <None Include="..\win_install.bat">
+    <None Include="com.cogcommtl.hardware.host.json">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="com.cogcommtl.hardware.host.json" />
     <None Include="win_install.bat">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </None>
+    <None Include="Lib\inpoutx64.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Lib\inpoutx64.lib" />
   </ItemGroup>
 </Project>

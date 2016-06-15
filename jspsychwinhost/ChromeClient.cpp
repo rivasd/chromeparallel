@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "ChromeClient.h"
 
-using json = nlohmann::json;
+using namespace rapidjson;
 using std::string;
 
 /*
@@ -35,12 +35,39 @@ namespace ChromeClient
 		{
 			msg += getchar();
 		}
-		auto jsonmess = json::parse(msg);
+
+		Document jsonMessage;
+		jsonMessage.Parse<0>(msg.c_str());
 
 		chromeMess message;
-		message.trigger = jsonmess["payload"];
 
 		return message;
+	}
+
+	/**
+	* takes a json-like Document (types from RapidJSON library) and sends the equivalent JSON string to the native app through stdout
+	* Returns true on success, false on failure
+	*/
+	bool sendMessageToExt(const rapidjson::Document& jsonMess) {
+		//magic code, comes straight from RapidJSON's github page
+		StringBuffer strbuffer;
+		Writer<StringBuffer> writer(strbuffer);
+		jsonMess.Accept(writer);
+
+		std::string message = strbuffer.GetString();
+		uint32_t messLength = message.length();
+
+		//now that we have our String and its length as a 4 byte unsigned int, we can start I/O
+		//first with the 4-byte message length
+		std::cout << char(messLength >> 0)
+			<< char(messLength >> 8)
+			<< char(messLength >> 16)
+			<< char(messLength >> 24);
+
+		//Now we send the actual string
+
+		std::cout << message << std::flush;
+		return true;
 	}
 
 }
