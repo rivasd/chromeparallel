@@ -15,17 +15,19 @@ int main()
 	uint32_t lastMessLength; //uint32_t variable type is virtually assured to actually be 4 bytes long
 	ChromeClient::chromeMess lastMessage; //damn, dat json type feels like javascript <3
 
+	//start by sending an "everything is okay" message
+
+	Document welcomeMess;
+	welcomeMess.SetObject();
+	welcomeMess.AddMember("message", "connected", welcomeMess.GetAllocator());
+
+	ChromeClient::sendMessageToExt(welcomeMess);
+
 
 	//the main, persistent, loop (listens for messages continuously)
 	while (true) {
 		
-		//start by sending an "everything is okay" message
-
-		Document welcomeMess;
-		welcomeMess.SetObject();
-		welcomeMess.AddMember("message", "connected", welcomeMess.GetAllocator());
-
-		ChromeClient::sendMessageToExt(welcomeMess);
+		
 
 
 		//try to read the 4-byte message length from the chrome port
