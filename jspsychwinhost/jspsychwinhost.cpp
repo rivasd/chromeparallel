@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "ChromeClient.h"
+#include "parallelport.h"
 using namespace rapidjson;
 
 int main()
@@ -11,9 +12,8 @@ int main()
 	_setmode(_fileno(stdin), _O_BINARY);
 	_setmode(_fileno(stdout), _O_BINARY);
 
-	//allocate only once a variable to hold the most recent message length, and the most recent message itself
-	uint32_t lastMessLength; //uint32_t variable type is virtually assured to actually be 4 bytes long
-	ChromeClient::chromeMess lastMessage; //damn, dat json type feels like javascript <3
+	//will hold the current message from the extension
+	Document lastMess;
 
 	//start by sending an "everything is okay" message
 
@@ -23,19 +23,24 @@ int main()
 
 	ChromeClient::sendMessageToExt(welcomeMess);
 
-
 	//the main, persistent, loop (listens for messages continuously)
 	while (true) {
+
+		//Kindly wait for a message from the Chrome extension
+		lastMess = ChromeClient::receive();
 		
-		
+		if (lastMess.HasMember("action")) {
+			if (lastMess["action"] == "STOP") {
+				//if we receive (or generate) the action:STOP, exit the program
+				break;
+			}
+			else if (lastMess["action"] == "parallel") {
+				WinParallelPort::sendTrig(lastMess["payload"].GetInt());
+			}
+		}
 
-
-		//try to read the 4-byte message length from the chrome port
-		//EXECUTION WILL BLOCK HERE UNTIL SOMETHING IS RECEIVED
-		lastMessLength = ChromeClient::readMessLength();
-
-
-
+		//for now, just echo back the message sent
+		ChromeClient::sendMessageToExt(lastMess);
 	}
 
     return 0;

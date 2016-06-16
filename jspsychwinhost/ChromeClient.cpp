@@ -7,41 +7,50 @@ using namespace rapidjson;
 using std::string;
 
 /*
-* Function encapsulation for interfacing the Chrome native messaging functions
+* Function encapsulation for interfacing the Chrome native messaging API
+* stdin and stdout streams are assumend to already be in binary mode (if not, trouble I guess??)
 *
 */
 
 namespace ChromeClient 
 {
-	//Type to hold a message from our jspsych Chrome extension
 	
-
 	unsigned int readMessLength() {
 		//allocate some space to receive our message length
-		unsigned int messLength;
+		unsigned int messLength = 0;
 		//read 4 bytes from stdin
 		for (int i = 0; i < 4; i++)
 		{
 			unsigned int read_char = getchar();
+			if (read_char == 0xFFFFFFFF) {
+				//the stdin stream is closed/meaningless, so return a zero-message length
+				return 0;
+			}
 			messLength = messLength | (read_char << i * 8);
 		}
-
 		return messLength;
 	}
 
-	chromeMess fetchMessage(unsigned int length) {
+	Document fetchMessage(unsigned int length) {
 		string msg = "";
-		for (int i = 0; i < length; i++)
-		{
-			msg += getchar();
+		if (length == 0) {
+			msg = "{\"action\":\"STOP\"}";
 		}
-
+		else {
+			for (int i = 0; i < length; i++)
+			{
+				msg += getchar();
+			}
+		}
+		
 		Document jsonMessage;
 		jsonMessage.Parse<0>(msg.c_str());
+		return jsonMessage;
+	}
 
-		chromeMess message;
-
-		return message;
+	//main listening function, waits for and returns a message from the Chrome extension, as a RapidJSON Document
+	Document receive() {
+		return fetchMessage(readMessLength());
 	}
 
 	/**
@@ -54,11 +63,18 @@ namespace ChromeClient
 		Writer<StringBuffer> writer(strbuffer);
 		jsonMess.Accept(writer);
 
-		std::string message = strbuffer.GetString();
-		uint32_t messLength = message.length();
+		const char* c_str = strbuffer.GetString();
+		if (c_str != NULL) {
+			return sendStrToExt(std::string(c_str));
+		}
+		else {
+			return false;
+		}
+		
+	}
 
-		//now that we have our String and its length as a 4 byte unsigned int, we can start I/O
-		//first with the 4-byte message length
+	bool sendStrToExt(std::string message) {
+		uint32_t messLength = message.length();
 		std::cout << char(messLength >> 0)
 			<< char(messLength >> 8)
 			<< char(messLength >> 16)

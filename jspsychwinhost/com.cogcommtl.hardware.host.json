@@ -1,7 +1,7 @@
 {
   "name": "com.cogcommtl.hardware",
   "description": "Native c++ program to interface the parallel port from a Chrome Extension",
-  "path": "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\ConsoleApplication1\\x64\\Debug\\chromeparallel.exe",
+  "path": "..\\x64\\Debug\\chromeparallel.exe",
   "type": "stdio",
   "allowed_origins": [
     "chrome-extension://ikibagkkfhdimgecdbbnjmgjcijahhhb/"
