@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <stdint.h>
 #include <string>
+#include "inpout32.h"
 #include "document.h"
 #include "writer.h"
 #include "stringbuffer.h"

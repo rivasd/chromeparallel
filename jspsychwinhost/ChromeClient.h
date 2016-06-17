@@ -11,7 +11,11 @@ namespace ChromeClient
 
 	unsigned int readMessLength();
 
-	chromeMess fetchMessage(unsigned int length);
+	rapidjson::Document fetchMessage(unsigned int length);
+
+	rapidjson::Document receive();
 
 	bool sendMessageToExt(const rapidjson::Document& jsonMess);
+
+	bool sendStrToExt(std::string message);
 }

@@ -98,10 +98,11 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>inpoutx64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AssemblyDebug>true</AssemblyDebug>
+      <AdditionalDependencies>inpout32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(ProjectDir)Lib\*.dll" "$(TargetDir)" /D /K /Y</Command>
+      <Command>XCOPY "$(ProjectDir)Lib\inpout32.dll" "$(TargetDir)" /D /K /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -117,10 +118,11 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AssemblyDebug>true</AssemblyDebug>
       <AdditionalDependencies>inpoutx64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(ProjectDir)Lib\*.dll" "$(TargetDir)" /D /K /Y</Command>
+      <Command>XCOPY "$(ProjectDir)Lib\inpoutx64.dll" "$(TargetDir)" /D /K /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -176,12 +178,14 @@
     <ClInclude Include="ChromeClient.h" />
     <ClInclude Include="inpout32.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="parallelport.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChromeClient.cpp" />
     <ClCompile Include="jspsychwinhost.cpp" />
+    <ClCompile Include="parallelport.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
