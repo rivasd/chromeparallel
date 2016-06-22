@@ -14,6 +14,9 @@ int main()
 
 	//will hold the current message from the extension
 	Document lastMess;
+	//flag indicating the success or failure of the last write operation
+	BOOL writeResult;
+	COMMTIMEOUTS comParams = { 0, 0, 0, 100, 5000 };
 
 	//start by sending an "everything is okay" message
 
@@ -30,9 +33,17 @@ int main()
 		std::wcout << port_inf.pPortName << std::endl;
 	}
 
-	HANDLE pport = CreateFile(L"LPT1", GENERIC_READ|GENERIC_WRITE, 0, 0, OPEN_EXISTING,FILE_FLAG_OVERLAPPED,0 );
+	OVERLAPPED ol = { 0 };
+	HANDLE pport = CreateFile("LPT1", GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,0 );
 	if (pport == INVALID_HANDLE_VALUE) {
-		std::wcout << "Oops! error opening parallel port" << GetLastError()
+		std::wcout << "Oops! error opening parallel port" << GetLastError();
+	}
+	else {
+		SetCommTimeouts(pport, &comParams);
+		unsigned char trigger[1] = { 20 };
+		std::cout << "Opened the handle to LPT1" << std::endl;
+		writeResult = WriteFile(pport, &trigger, 1, NULL, NULL); // this should actually send somehing
+		std::cout << writeResult << std::endl << GetLastError();
 	}
 
 	return 0;
