@@ -63,11 +63,9 @@ int main()
 				//WinParallelPort::sendTrig(lastMess["payload"].GetInt());
 			}
 		}
-
 		//for now, just echo back the message sent
 		ChromeClient::sendMessageToExt(lastMess);
 	}
-
     return 0;
 }
 
