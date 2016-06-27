@@ -5,6 +5,7 @@
 namespace WinParallelPort {
 
 	PORT_INFO_1 ports[3];
+	short portAdress;
 
 	bool sendTrig(int trigger, HANDLE port ) {
 		return false;
@@ -28,5 +29,33 @@ namespace WinParallelPort {
 			}
 		}
 		return ports;
+	}
+
+	void setupAddress(std::string address) {
+		portAdress = (short)std::stoi(address, nullptr, 16);
+	}
+
+	bool process(rapidjson::Document message) {
+		if (!message.HasMember("action") || !message["action"].IsString() || !message.HasMember("payload")) {
+			return false;
+		}
+		std::string action = message["action"].GetString();
+
+		if (action == "setup") {
+			if (message["payload"].IsString()) {
+				try
+				{
+					setupAddress(message["payload"].GetString());
+				}
+				catch (const std::exception& ex)
+				{
+
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		
 	}
 }
