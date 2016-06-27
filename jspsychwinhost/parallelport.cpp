@@ -5,12 +5,12 @@
 namespace WinParallelPort {
 
 	PORT_INFO_1 ports[3];
-	short portAddress = 0x378;
+	USHORT portAddress = 0x378; //intialize with standard old-school base addresss
 
 	bool sendTrig(int trigger) {
-		Out32(portAddress, (short)trigger);
+		DlPortWritePortUchar(portAddress, (USHORT)trigger);
 		Sleep(5);
-		Out32(portAddress, 0);
+		DlPortWritePortUchar(portAddress, 0);
 		return true;
 	}
 	
@@ -35,7 +35,7 @@ namespace WinParallelPort {
 	}
 
 	void setupAddress(std::string address) {
-		portAddress = (short)std::stoi(address, nullptr, 16);
+		portAddress = (USHORT)std::stoi(address, nullptr, 16);
 	}
 
 	bool process(rapidjson::Document& message) {
