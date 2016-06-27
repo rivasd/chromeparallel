@@ -18,4 +18,6 @@ namespace ChromeClient
 	bool sendMessageToExt(const rapidjson::Document& jsonMess);
 
 	bool sendStrToExt(std::string message);
+
+	bool sendErrorMess(std::string code, std::string error);
 }

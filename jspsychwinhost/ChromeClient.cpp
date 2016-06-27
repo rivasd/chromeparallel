@@ -34,7 +34,7 @@ namespace ChromeClient
 	Document fetchMessage(unsigned int length) {
 		string msg = "";
 		if (length == 0) {
-			msg = "{\"action\":\"STOP\"}";
+			msg = "{\"target\":\"STOP\"}";
 		}
 		else {
 			for (int i = 0; i < length; i++)
@@ -84,6 +84,14 @@ namespace ChromeClient
 
 		std::cout << message << std::flush;
 		return true;
+	}
+
+	//TODO: need to check that both arguments are strings without JSON characters like "}", "{", 
+	bool sendErrorMess(std::string code, std::string error) {
+		std::string errMess = "{";
+		errMess = errMess + "\"code\":\"" + code + "\",";
+		errMess = errMess + "\"error\":\"" + error + "\"}";
+		return sendStrToExt(errMess);
 	}
 
 }

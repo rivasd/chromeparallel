@@ -15,8 +15,8 @@ int main()
 	//will hold the current message from the extension
 	Document lastMess;
 	//flag indicating the success or failure of the last write operation
-	BOOL writeResult;
-	COMMTIMEOUTS comParams = { 0, 0, 0, 100, 5000 };
+	bool writeResult;
+	
 
 	//start by sending an "everything is okay" message
 
@@ -28,25 +28,7 @@ int main()
 
 	/**********************************TEST CASES *******************************************/
 
-	std::vector<PORT_INFO_2> ports = WinParallelPort::enumPorts();
-	for (auto port_inf : ports) {
-		std::wcout << port_inf.pPortName << std::endl;
-	}
-
-	OVERLAPPED ol = { 0 };
-	HANDLE pport = CreateFile("LPT1", GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,0 );
-	if (pport == INVALID_HANDLE_VALUE) {
-		std::wcout << "Oops! error opening parallel port" << GetLastError();
-	}
-	else {
-		SetCommTimeouts(pport, &comParams);
-		unsigned char trigger[1] = { 20 };
-		std::cout << "Opened the handle to LPT1" << std::endl;
-		writeResult = WriteFile(pport, &trigger, 1, NULL, NULL); // this should actually send somehing
-		std::cout << writeResult << std::endl << GetLastError();
-	}
-
-	return 0;
+	
 
 	//the main, persistent, loop (listens for messages continuously)
 	while (true) {
@@ -54,14 +36,17 @@ int main()
 		//Kindly wait for a message from the Chrome extension
 		lastMess = ChromeClient::receive();
 		
-		if (lastMess.HasMember("action")) {
-			if (lastMess["action"] == "STOP") {
+		if (lastMess.HasMember("target")) {
+			if (lastMess["target"] == "STOP") {
 				//if we receive (or generate) the action:STOP, exit the program
 				break;
 			}
-			else if (lastMess["action"] == "parallel") {
-				//WinParallelPort::sendTrig(lastMess["payload"].GetInt());
+			else if (lastMess["target"] == "parallel") {
+				WinParallelPort::process(lastMess);
 			}
+		}
+		else {
+			ChromeClient::sendErrorMess("1", "message has missing member \"target\"");
 		}
 		//for now, just echo back the message sent
 		ChromeClient::sendMessageToExt(lastMess);

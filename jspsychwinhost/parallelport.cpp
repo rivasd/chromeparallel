@@ -5,10 +5,13 @@
 namespace WinParallelPort {
 
 	PORT_INFO_1 ports[3];
-	short portAdress;
+	short portAddress = 0x378;
 
-	bool sendTrig(int trigger, HANDLE port ) {
-		return false;
+	bool sendTrig(int trigger) {
+		Out32(portAddress, (short)trigger);
+		Sleep(5);
+		Out32(portAddress, 0);
+		return true;
 	}
 	
 	std::vector<PORT_INFO_2> enumPorts() {
@@ -32,10 +35,10 @@ namespace WinParallelPort {
 	}
 
 	void setupAddress(std::string address) {
-		portAdress = (short)std::stoi(address, nullptr, 16);
+		portAddress = (short)std::stoi(address, nullptr, 16);
 	}
 
-	bool process(rapidjson::Document message) {
+	bool process(rapidjson::Document& message) {
 		if (!message.HasMember("action") || !message["action"].IsString() || !message.HasMember("payload")) {
 			return false;
 		}
@@ -49,12 +52,18 @@ namespace WinParallelPort {
 				}
 				catch (const std::exception& ex)
 				{
-
+					return false;
 				}
 			}
 			else {
 				return false;
 			}
+		}
+		else if (action == "trigger") {
+			if (message["payload"].IsInt()) {
+				sendTrig(message["payload"].GetInt());
+			}
+			else return false;
 		}
 		
 	}
