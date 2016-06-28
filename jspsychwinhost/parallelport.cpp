@@ -5,7 +5,7 @@
 namespace WinParallelPort {
 
 	PORT_INFO_1 ports[3];
-	USHORT portAddress = 0x378; //intialize with standard old-school base addresss
+	USHORT portAddress = 0xcff8; //intialize with standard old-school base addresss
 
 	bool sendTrig(int trigger) {
 		DlPortWritePortUchar(portAddress, (USHORT)trigger);
