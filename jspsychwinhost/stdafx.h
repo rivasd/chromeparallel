@@ -14,6 +14,8 @@
 #include <fcntl.h>
 #include <stdint.h>
 #include <string>
+#include <Windows.h>
+#include <vector>
 #include "inpout32.h"
 #include "document.h"
 #include "writer.h"

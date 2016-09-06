@@ -4,6 +4,6 @@
   "path": "..\\x64\\Debug\\chromeparallel.exe",
   "type": "stdio",
   "allowed_origins": [
-    "chrome-extension://ikibagkkfhdimgecdbbnjmgjcijahhhb/"
+    "chrome-extension://fdaeoenjbmmkhffhikhlpdpfihldgadg/"
   ]
 }
