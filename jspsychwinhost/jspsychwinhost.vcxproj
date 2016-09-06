@@ -195,10 +195,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="com.cogcommtl.hardware.host.json" />
+    <None Include="Lib\inpout32.dll" />
     <None Include="Lib\inpoutx64.dll" />
+    <None Include="Lib\InstallDriver.exe" />
     <None Include="win_install.bat" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="Lib\inpout32.lib" />
     <Library Include="Lib\inpoutx64.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

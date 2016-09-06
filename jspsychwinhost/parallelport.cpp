@@ -5,14 +5,16 @@
 
 namespace WinParallelPort {
 
+	const short pport = 0x378;
+
 	bool sendTrig(int trigger) {
 		if (trigger < 0 || trigger > 255) {
 			return false;
 		}
 		else {
-			Inp32(trigger);
+			Out32(pport, trigger);
 			Sleep(1);
-			Inp32(0);
+			Out32(pport, 0);
 			return true;
 		}
 	}
