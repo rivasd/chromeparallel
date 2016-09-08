@@ -8,31 +8,46 @@ using namespace std;
 
 int main(int numberOfParameters, char *parametersArray[])
 {
-	const string HOOK = "@@path";
+	const string HOOK = "\"@@path\",";
 	string currentPath;
 	string wholeFile;
 	string currentLine;
 	const char *wholeFileChar;
 	size_t fileLength;
 
-	currentPath = parametersArray[0];
+	currentPath = parametersArray[1];
 
 	ifstream jsonFile;
-	jsonFile.open("com.cogcommtl.hardware.host.json");
-	ofstream newJsonFile;
+	jsonFile.open(currentPath + "\\com.cogcommtl.hardware.host.json", ios::in);
+
+//	cout << "bad : " << jsonFile.bad() << endl;
+//	cout << "fail: " << jsonFile.fail() << endl;
+
+
+/*	if (!jsonFile) {
+		cout << "nope!";
+	}*/
+	
+	jsonFile >> currentLine;
 
 	while (!jsonFile.eof()) {
-		getline(jsonFile, currentLine);
 		if (currentLine == HOOK) {
-			wholeFile += currentPath;
+			wholeFile += ("\"" + currentPath + "\", ");
 
 		}
-		else
-			wholeFile += currentLine;
+		else {
+			wholeFile += (currentLine+ " ");
+		}
+
+		jsonFile >> currentLine;
 	}
 
+	jsonFile.clear();
 	jsonFile.close();
-	newJsonFile.open("com.cogcommtl.hardware.host.json");
+
+	ofstream newJsonFile(currentPath + "\\com.cogcommtl.hardware.host.json");
+
+	wholeFile += " }";
 
 	wholeFileChar = wholeFile.c_str();
 	fileLength = wholeFile.length();

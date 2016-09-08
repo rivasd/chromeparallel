@@ -94,7 +94,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)jspsychwinhost\com.cogcommtl.hardware.host.json" $(TargetDir)</Command>
+      <Command>xcopy "$(SolutionDir)jspsychwinhost\com.cogcommtl.hardware.host.json" $(TargetDir) /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -110,7 +110,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)jspsychwinhost\com.cogcommtl.hardware.host.json" $(TargetDir)</Command>
+      <Command>xcopy "$(SolutionDir)jspsychwinhost\com.cogcommtl.hardware.host.json" $(TargetDir) /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,7 +130,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)jspsychwinhost\com.cogcommtl.hardware.host.json" $(TargetDir)</Command>
+      <Command>xcopy "$(SolutionDir)jspsychwinhost\com.cogcommtl.hardware.host.json" $(TargetDir) /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,7 +150,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)jspsychwinhost\com.cogcommtl.hardware.host.json" $(TargetDir)</Command>
+      <Command>xcopy "$(SolutionDir)jspsychwinhost\com.cogcommtl.hardware.host.json" $(TargetDir) /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
