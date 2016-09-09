@@ -35,7 +35,7 @@ namespace WinParallelPort {
 	}
 
 	void setupAddress(std::string address) {
-		portAddress = (USHORT)std::stoi(address, nullptr, 16);
+		portAddress = (USHORT)std::stoi("0x"+address, nullptr, 16);
 	}
 
 	bool process(rapidjson::Document& message) {
