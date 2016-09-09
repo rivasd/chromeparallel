@@ -32,7 +32,8 @@ int main(int numberOfParameters, char *parametersArray[])
 
 	while (!jsonFile.eof()) {
 		if (currentLine == HOOK) {
-			wholeFile += ("\"" + currentPath + "\", ");
+			//TODO: remove hardcoding of exe file
+			wholeFile += ("\"" + currentPath + "chromeparallel.exe\", ");
 
 		}
 		else {
