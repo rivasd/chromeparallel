@@ -281,7 +281,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:jsPsychHardware"
         "ProductCode" = "8:{476C1FAA-A6EB-498B-A4E7-91C00AB67A68}"
-        "PackageCode" = "8:{1D8199A0-9F30-42CD-9A3A-2568696515B4}"
+        "PackageCode" = "8:{661F7AD2-461D-4F4C-8AF8-6743A04D53DE}"
         "UpgradeCode" = "8:{7182CCCD-77D5-4D35-A4D2-5312BC913741}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -387,7 +387,7 @@
                                                     {
                                                     "Name" = "8:com.cogcommtl.hardware"
                                                     "Condition" = "8:"
-                                                    "AlwaysCreate" = "11:FALSE"
+                                                    "AlwaysCreate" = "11:TRUE"
                                                     "DeleteAtUninstall" = "11:TRUE"
                                                     "Transitive" = "11:FALSE"
                                                         "Keys"
