@@ -61,6 +61,7 @@
     <None Include="Lib\inpoutx64.dll" />
     <None Include="Lib\inpout32.dll" />
     <None Include="Lib\InstallDriver.exe" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Lib\inpoutx64.lib" />

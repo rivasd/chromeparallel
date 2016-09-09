@@ -15,19 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0EA0137A9F72412EAA65769CB942EDAB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1BBFDB1531DF44FF92ED88BE9E9895CC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_330CF4A36C4349959FACC6A3F1A31FEE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -127,20 +115,6 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_7E2255A7B6E9420A8754C71B889107F0"
-            {
-            "Name" = "8:Primary Output from config (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_330CF4A36C4349959FACC6A3F1A31FEE"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:[TARGETDIR]"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:2"
-            "Identifier" = "8:_88C42EFC_E98D_44E2_8448_992802CF6981"
-            "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
-            }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_D339509755064A7FA51DDCB2D3AEC352"
             {
             "Name" = "8:InstallDriver.exe"
@@ -170,26 +144,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0EA0137A9F72412EAA65769CB942EDAB"
-            {
-            "SourcePath" = "8:..\\jspsychwinhost\\win_install.bat"
-            "TargetName" = "8:win_install.bat"
-            "Tag" = "8:"
-            "Folder" = "8:_0DE9D77D8E074957BCE2F1148C320EBB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1BBFDB1531DF44FF92ED88BE9E9895CC"
             {
             "SourcePath" = "8:..\\jspsychwinhost\\Lib\\inpout32.dll"
@@ -327,7 +281,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:jsPsychHardware"
         "ProductCode" = "8:{476C1FAA-A6EB-498B-A4E7-91C00AB67A68}"
-        "PackageCode" = "8:{5C0ED116-CF65-4177-A9B4-7EDE6342A40E}"
+        "PackageCode" = "8:{1D8199A0-9F30-42CD-9A3A-2568696515B4}"
         "UpgradeCode" = "8:{7182CCCD-77D5-4D35-A4D2-5312BC913741}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -368,70 +322,6 @@
                     "Transitive" = "11:FALSE"
                         "Keys"
                         {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_3D0E0CCA29BD46859A00793A52EF5851"
-                            {
-                            "Name" = "8:Google"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_6861F92823D546AAB70527086A80CA53"
-                                    {
-                                    "Name" = "8:Chrome"
-                                    "Condition" = "8:"
-                                    "AlwaysCreate" = "11:FALSE"
-                                    "DeleteAtUninstall" = "11:FALSE"
-                                    "Transitive" = "11:FALSE"
-                                        "Keys"
-                                        {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_12105FE6ECA34804A6CB7F0AEC52EF0C"
-                                            {
-                                            "Name" = "8:Extensions"
-                                            "Condition" = "8:"
-                                            "AlwaysCreate" = "11:FALSE"
-                                            "DeleteAtUninstall" = "11:FALSE"
-                                            "Transitive" = "11:FALSE"
-                                                "Keys"
-                                                {
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_90C1D6D3D66E45B28D80A6B3B3273848"
-                                                    {
-                                                    "Name" = "8:jfodnelopfigofnkclnkeeehjjjlnkan"
-                                                    "Condition" = "8:NOT VersionNT64"
-                                                    "AlwaysCreate" = "11:TRUE"
-                                                    "DeleteAtUninstall" = "11:FALSE"
-                                                    "Transitive" = "11:FALSE"
-                                                        "Keys"
-                                                        {
-                                                        }
-                                                        "Values"
-                                                        {
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_2F23FCE362A04B2AAFD78BA668C7C499"
-                                                            {
-                                                            "Name" = "8:update_url"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:https://clients2.google.com/service/update2/crx"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                "Values"
-                                                {
-                                                }
-                                            }
-                                        }
-                                        "Values"
-                                        {
-                                        }
-                                    }
-                                }
-                                "Values"
-                                {
-                                }
-                            }
                             "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_5B886BE315B746D096617C93D7AA9D80"
                             {
                             "Name" = "8:[Manufacturer]"
@@ -441,84 +331,6 @@
                             "Transitive" = "11:FALSE"
                                 "Keys"
                                 {
-                                }
-                                "Values"
-                                {
-                                }
-                            }
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_C1C69542ACDF473A9AD6AF4484FD24E8"
-                            {
-                            "Name" = "8:WOW6432Node"
-                            "Condition" = "8:VersionNT64"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_5875A7385D6543EC948845673C934376"
-                                    {
-                                    "Name" = "8:Google"
-                                    "Condition" = "8:"
-                                    "AlwaysCreate" = "11:FALSE"
-                                    "DeleteAtUninstall" = "11:FALSE"
-                                    "Transitive" = "11:FALSE"
-                                        "Keys"
-                                        {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_2296A6E3CDA84D14871B4772A9700F1F"
-                                            {
-                                            "Name" = "8:Chrome"
-                                            "Condition" = "8:"
-                                            "AlwaysCreate" = "11:FALSE"
-                                            "DeleteAtUninstall" = "11:FALSE"
-                                            "Transitive" = "11:FALSE"
-                                                "Keys"
-                                                {
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_6AC5B891B81F4621B0B1B2CA05F0E79C"
-                                                    {
-                                                    "Name" = "8:Extensions"
-                                                    "Condition" = "8:"
-                                                    "AlwaysCreate" = "11:FALSE"
-                                                    "DeleteAtUninstall" = "11:FALSE"
-                                                    "Transitive" = "11:FALSE"
-                                                        "Keys"
-                                                        {
-                                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_EED1AF7CC2E34FDA9ED6C9C06731C3A1"
-                                                            {
-                                                            "Name" = "8:jfodnelopfigofnkclnkeeehjjjlnkan"
-                                                            "Condition" = "8:VersionNT64"
-                                                            "AlwaysCreate" = "11:FALSE"
-                                                            "DeleteAtUninstall" = "11:FALSE"
-                                                            "Transitive" = "11:FALSE"
-                                                                "Keys"
-                                                                {
-                                                                }
-                                                                "Values"
-                                                                {
-                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_1102EF2F59614BFF808FDAD6B8E24441"
-                                                                    {
-                                                                    "Name" = "8:update_url"
-                                                                    "Condition" = "8:VersionNT64"
-                                                                    "Transitive" = "11:FALSE"
-                                                                    "ValueTypes" = "3:1"
-                                                                    "Value" = "8:https://clients2.google.com/service/update2/crx"
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                        "Values"
-                                                        {
-                                                        }
-                                                    }
-                                                }
-                                                "Values"
-                                                {
-                                                }
-                                            }
-                                        }
-                                        "Values"
-                                        {
-                                        }
-                                    }
                                 }
                                 "Values"
                                 {
@@ -1052,37 +864,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_330CF4A36C4349959FACC6A3F1A31FEE"
-            {
-            "SourcePath" = "8:..\\x64\\Debug\\config.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_0DE9D77D8E074957BCE2F1148C320EBB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{2EFC99F0-A094-4595-9227-16DA60E2D152}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D6E33F48A8DC429FABC81602CFF05CD8"
             {
-            "SourcePath" = "8:..\\x64\\Debug\\chromeparallel.exe"
+            "SourcePath" = "8:..\\x64\\Release\\chromeparallel.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0DE9D77D8E074957BCE2F1148C320EBB"

@@ -194,6 +194,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="com.cogcommtl.hardware.host.json" />
     <None Include="Lib\inpout32.dll" />
     <None Include="Lib\inpoutx64.dll" />

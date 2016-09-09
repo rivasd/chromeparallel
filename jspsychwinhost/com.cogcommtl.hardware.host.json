@@ -1,7 +1,7 @@
 {
   "name": "com.cogcommtl.hardware",
   "description": "Native c++ program to interface the parallel port from a Chrome Extension",
-  "path": "@@path",
+  "path": "chromeparallel.exe",
   "type": "stdio",
   "allowed_origins": [
     "chrome-extension://jfodnelopfigofnkclnkeeehjjjlnkan/"
