@@ -8,6 +8,7 @@
 #include "targetver.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <tchar.h>
 #include <iostream>
 #include <io.h>
@@ -20,6 +21,7 @@
 #include "document.h"
 #include "writer.h"
 #include "stringbuffer.h"
+
 
 
 

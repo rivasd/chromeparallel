@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ChromeClient.h"
 #include "parallelport.h"
+#include "serialport.h"
 using namespace rapidjson;
 
 int main()
@@ -43,6 +44,9 @@ int main()
 			}
 			else if (lastMess["target"] == "parallel") {
 				WinParallelPort::process(lastMess);
+			}
+			else if (lastMess["target"] == "serial") {
+
 			}
 		}
 		else {
