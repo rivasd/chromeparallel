@@ -145,25 +145,69 @@ namespace WinSerialPort {
 			if (message["payload"].IsString()) {
 				const char* payload = message["payload"].GetString();
 				serialConnection.reset(new SerialPort(payload));
+				return true;
 			}
 			else if (message["payload"].IsInt()) {
 				serialConnection.reset(new SerialPort(message["payload"].GetInt()));
+				return true;
+			}
+			else {
+				return false;
 			}
 		}
 		else if (action == "send") {
 			if (serialConnection != nullptr && serialConnection->isConnected()) {
 				if (message["payload"].IsString()) {
 					const char* signal = message["payload"].GetString();
-					serialConnection->writeSerialPort(signal, strlen(signal));
+					return serialConnection->writeSerialPort(signal, strlen(signal));
 				}
 				else {
 					ChromeClient::sendErrorMess("serial", "Can only send String to serial port");
+					return false;
 				}
-				
+
 			}
 			else {
 				ChromeClient::sendErrorMess("serial", "connection was not initialized");
+				return false;
 			}
 		}
+		else if (action == "list") {
+			std::vector<char*> ports;
+			WinSerialPort::listPorts(ports);
+
+			rapidjson::Document mess;
+			mess.SetObject();
+
+			rapidjson::Value portList(rapidjson::kArrayType);
+
+			for (int i = 0; i < ports.size(); i++) {
+				portList.PushBack(rapidjson::Value(ports[i], mess.GetAllocator()).Move(), mess.GetAllocator());
+			}
+			mess.AddMember("code", "serial", mess.GetAllocator());
+			mess.AddMember("ports", portList, mess.GetAllocator());
+
+			ChromeClient::sendMessageToExt(mess);
+
+
+		}
+	}
+
+	void listPorts(std::vector<char*>& buffer) {
+
+		buffer.clear();
+
+		for (int i = 0; i <= 255; i++) {
+			char port[7];
+			COMMCONFIG CommConfig;
+			DWORD size;
+
+			snprintf(port, sizeof port, "COM%d", i);
+			size = sizeof CommConfig;
+			if (GetDefaultCommConfig(port, &CommConfig, &size) || size > sizeof CommConfig) {
+				buffer.push_back(port);
+			}
+		}
+
 	}
 }

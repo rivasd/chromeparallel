@@ -22,7 +22,6 @@
     <ProjectGuid>{EF75F3C7-57EA-435B-BC07-613A3FC2E59E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>jspsychwinhost</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

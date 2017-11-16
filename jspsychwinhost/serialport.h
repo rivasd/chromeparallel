@@ -24,4 +24,6 @@ public:
 namespace WinSerialPort {
 
 	bool process(rapidjson::Document& message);
+
+	void listPorts(std::vector<char*>& buffer);
 }
