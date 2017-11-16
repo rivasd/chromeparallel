@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <Windows.h>
+#include <memory>
 #include <vector>
 #include "inpout32.h"
 #include "document.h"

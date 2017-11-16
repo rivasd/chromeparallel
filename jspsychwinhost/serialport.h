@@ -10,14 +10,14 @@ private:
 	bool connected;
 	COMSTAT status;
 	DWORD errors;
-	bool init(const char* portNumber);
+	void init(const char* portNumber);
 public:
 	SerialPort(const char *portName);
 	SerialPort(int portNmb);
 	~SerialPort();
 
 	int readSerialPort(char *buffer, unsigned int buf_size);
-	bool writeSerialPort(char *buffer, unsigned int buf_size);
+	bool writeSerialPort(const char *buffer, unsigned int buf_size);
 	bool isConnected();
 };
 

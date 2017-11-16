@@ -46,7 +46,7 @@ int main()
 				WinParallelPort::process(lastMess);
 			}
 			else if (lastMess["target"] == "serial") {
-
+				WinSerialPort::process(lastMess);
 			}
 		}
 		else {

@@ -35,7 +35,7 @@ SerialPort::~SerialPort()
 /*
 * Initializes the resource held by an instance of this class
 */
-bool SerialPort::init(const char* portNumber) {
+void SerialPort::init(const char* portNumber) {
 
 	//we were already initialized, release the previously held port resource
 	if (this->connected) {
@@ -110,7 +110,7 @@ int SerialPort::readSerialPort(char *buffer, unsigned int buf_size)
 	return 0;
 }
 
-bool SerialPort::writeSerialPort(char *buffer, unsigned int buf_size)
+bool SerialPort::writeSerialPort(const char *buffer, unsigned int buf_size)
 {
 	DWORD bytesSend;
 
@@ -131,7 +131,7 @@ bool SerialPort::isConnected()
 */
 namespace WinSerialPort {
 
-	SerialPort* serialConnection = nullptr;
+	std::unique_ptr<SerialPort> serialConnection = nullptr;
 
 	bool process(rapidjson::Document& message) {
 		if (!message.HasMember("action") || !message["action"].IsString() || !message.HasMember("payload")) {
@@ -144,10 +144,25 @@ namespace WinSerialPort {
 
 			if (message["payload"].IsString()) {
 				const char* payload = message["payload"].GetString();
-				serialConnection = new SerialPort(payload);
+				serialConnection.reset(new SerialPort(payload));
 			}
 			else if (message["payload"].IsInt()) {
-				serialConnection = new SerialPort(message["payload"].GetInt());
+				serialConnection.reset(new SerialPort(message["payload"].GetInt()));
+			}
+		}
+		else if (action == "send") {
+			if (serialConnection != nullptr && serialConnection->isConnected()) {
+				if (message["payload"].IsString()) {
+					const char* signal = message["payload"].GetString();
+					serialConnection->writeSerialPort(signal, strlen(signal));
+				}
+				else {
+					ChromeClient::sendErrorMess("serial", "Can only send String to serial port");
+				}
+				
+			}
+			else {
+				ChromeClient::sendErrorMess("serial", "connection was not initialized");
 			}
 		}
 	}

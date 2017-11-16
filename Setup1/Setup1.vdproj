@@ -243,7 +243,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_0DE9D77D8E074957BCE2F1148C320EBB"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -281,7 +281,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:jsPsychHardware"
         "ProductCode" = "8:{476C1FAA-A6EB-498B-A4E7-91C00AB67A68}"
-        "PackageCode" = "8:{661F7AD2-461D-4F4C-8AF8-6743A04D53DE}"
+        "PackageCode" = "8:{84862FB7-2C4B-4B0D-845D-62FC719797D2}"
         "UpgradeCode" = "8:{7182CCCD-77D5-4D35-A4D2-5312BC913741}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -302,7 +302,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -397,7 +397,7 @@
                                                         {
                                                             "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_DACA4B0B56A240A0B71D50CBAA2BCEF0"
                                                             {
-                                                            "Name" = "8:(Default)"
+                                                            "Name" = "8:"
                                                             "Condition" = "8:"
                                                             "Transitive" = "11:FALSE"
                                                             "ValueTypes" = "3:1"
