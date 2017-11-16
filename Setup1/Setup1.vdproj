@@ -281,7 +281,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:jsPsychHardware"
         "ProductCode" = "8:{476C1FAA-A6EB-498B-A4E7-91C00AB67A68}"
-        "PackageCode" = "8:{84862FB7-2C4B-4B0D-845D-62FC719797D2}"
+        "PackageCode" = "8:{BF63C3C1-15EA-4ECF-9CA6-C77C78C30426}"
         "UpgradeCode" = "8:{7182CCCD-77D5-4D35-A4D2-5312BC913741}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -866,7 +866,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D6E33F48A8DC429FABC81602CFF05CD8"
             {
-            "SourcePath" = "8:..\\x64\\Release\\chromeparallel.exe"
+            "SourcePath" = "8:..\\x64\\Debug\\chromeparallel.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0DE9D77D8E074957BCE2F1148C320EBB"

@@ -173,7 +173,7 @@ namespace WinSerialPort {
 			}
 		}
 		else if (action == "list") {
-			std::vector<char*> ports;
+			std::vector<std::string> ports;
 			WinSerialPort::listPorts(ports);
 
 			rapidjson::Document mess;
@@ -182,7 +182,7 @@ namespace WinSerialPort {
 			rapidjson::Value portList(rapidjson::kArrayType);
 
 			for (int i = 0; i < ports.size(); i++) {
-				portList.PushBack(rapidjson::Value(ports[i], mess.GetAllocator()).Move(), mess.GetAllocator());
+				portList.PushBack(rapidjson::Value(ports[i].c_str(), mess.GetAllocator()).Move(), mess.GetAllocator());
 			}
 			mess.AddMember("code", "serial", mess.GetAllocator());
 			mess.AddMember("ports", portList, mess.GetAllocator());
@@ -193,11 +193,11 @@ namespace WinSerialPort {
 		}
 	}
 
-	void listPorts(std::vector<char*>& buffer) {
+	void listPorts(std::vector<std::string>& buffer) {
 
 		buffer.clear();
 
-		for (int i = 0; i <= 255; i++) {
+		for (int i = 0; i <= 64; i++) {
 			char port[7];
 			COMMCONFIG CommConfig;
 			DWORD size;
