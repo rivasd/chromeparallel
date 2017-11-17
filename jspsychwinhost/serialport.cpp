@@ -84,7 +84,9 @@ void SerialPort::init(const char* portNumber) {
 			else {
 				this->connected = true;
 				PurgeComm(this->handler, PURGE_RXCLEAR | PURGE_TXCLEAR);
-				ChromeClient::sendStrToExt("{\"code\":\"serial\",\"message\":\"OK\"}");
+				std::string name = "COM";
+				name.append(portNumber);
+				ChromeClient::sendStrToExt("{\"code\":\"serial\",\"result\":\"connected\", \"name\":\""+name+"\"}");
 			}
 		}
 	}
@@ -145,18 +147,20 @@ namespace WinSerialPort {
 			if (message["payload"].IsString()) {
 				const char* payload = message["payload"].GetString();
 				serialConnection.reset(new SerialPort(payload));
-				return true;
 			}
 			else if (message["payload"].IsInt()) {
 				serialConnection.reset(new SerialPort(message["payload"].GetInt()));
-				return true;
 			}
-			else {
-				return false;
-			}
+			
+			//check if our serialConnection is was actually connected successfully
+			return serialConnection->isConnected();
+		}
+		else if (action == "disconnect") {
+			serialConnection.reset();
+			return ChromeClient::sendStrToExt("{\"code\":\"serial\", \"result\":\"disconnected\"}");
 		}
 		else if (action == "send") {
-			if (serialConnection != nullptr && serialConnection->isConnected()) {
+			if (serialConnection && serialConnection->isConnected()) {
 				if (message["payload"].IsString()) {
 					const char* signal = message["payload"].GetString();
 					return serialConnection->writeSerialPort(signal, strlen(signal));
