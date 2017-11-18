@@ -50,7 +50,7 @@ int main()
 			}
 		}
 		else {
-			ChromeClient::sendErrorMess("1", "message has missing member \"target\"");
+			ChromeClient::sendErrorMess("1", "message has missing member 'target'");
 		}
 		//for now, just echo back the message sent
 		ChromeClient::sendMessageToExt(lastMess);
