@@ -77,26 +77,45 @@ void SerialPort::init(const char* portNumber) {
 			dcbSerialParameters.Parity = NOPARITY;
 			dcbSerialParameters.fDtrControl = DTR_CONTROL_ENABLE;
 
+			//Using strict timeouts and Blocking I/O for now
+			//TODO: use multithreaded model to continously listen for data on the port without blocking main thread
 			if (!SetCommState(handler, &dcbSerialParameters))
 			{
 				ChromeClient::sendErrorMess("serial", "ALERT: could not set Serial port parameters\n");
 			}
 			else {
-				this->connected = true;
-				PurgeComm(this->handler, PURGE_RXCLEAR | PURGE_TXCLEAR);
-				std::string name = "COM";
-				name.append(portNumber);
-				ChromeClient::sendStrToExt("{\"code\":\"serial\",\"result\":\"connected\", \"name\":\""+name+"\"}");
+				COMMTIMEOUTS timeouts = { 0 };
+
+				if (!GetCommTimeouts(this->handler, &timeouts)) {
+					ChromeClient::sendErrorMess("serial", "ALERT: could not get Serial port timeouts\n");
+				}
+				else {
+
+					timeouts.ReadIntervalTimeout = MAXDWORD;
+					timeouts.ReadTotalTimeoutConstant = 50;
+					timeouts.ReadTotalTimeoutMultiplier = MAXDWORD;
+
+					if (!SetCommTimeouts(this->handler, &timeouts)) {
+						ChromeClient::sendErrorMess("serial", "ALERT: could not set Serial port timeouts\n");
+					}
+					else {
+						this->connected = true;
+						PurgeComm(this->handler, PURGE_RXCLEAR | PURGE_TXCLEAR);
+						std::string name = "COM";
+						name.append(portNumber);
+						ChromeClient::sendStrToExt("{\"code\":\"serial\",\"result\":\"connected\", \"name\":\"" + name + "\"}");
+					}
+				}
 			}
 		}
 	}
 }
 
 
-int SerialPort::readSerialPort(char *buffer, unsigned int buf_size)
+int SerialPort::readSerialPort(std::string& buffer, unsigned int buf_size)
 {
 	DWORD bytesRead;
-	unsigned int toRead;
+	unsigned int toRead=1;
 
 	ClearCommError(this->handler, &this->errors, &this->status);
 
@@ -106,9 +125,20 @@ int SerialPort::readSerialPort(char *buffer, unsigned int buf_size)
 		}
 		else toRead = this->status.cbInQue;
 	}
+	else {
+		return 0;
+	}
 
-	if (ReadFile(this->handler, buffer, toRead, &bytesRead, NULL)) return bytesRead;
+	char* inputBuffer = new char[toRead+1];
 
+	if (ReadFile(this->handler, inputBuffer, toRead, &bytesRead, NULL)) {
+		buffer.empty();
+		inputBuffer[toRead] = '\0';
+		buffer += inputBuffer;
+		delete[] inputBuffer;
+		return bytesRead;
+	}
+	delete[] inputBuffer;
 	return 0;
 }
 
@@ -194,6 +224,21 @@ namespace WinSerialPort {
 			ChromeClient::sendMessageToExt(mess);
 
 
+		}
+		else if (action == "read") {
+			if (message["payload"].IsInt()) {
+				const unsigned int length = message["payload"].GetInt();
+				std::string read;
+				if (serialConnection->readSerialPort(read, length)) {
+					ChromeClient::sendStrToExt("{\"code\":\"serial\", \"type\":\"read\",\"result\":\""+read+"\"}");
+				}
+				else {
+					ChromeClient::sendErrorMess("serial", "failed to read anything");
+				}
+			}
+			else {
+				ChromeClient::sendErrorMess("serial", "must specify max amount of characters to read in 'payload' member");
+			}
 		}
 	}
 

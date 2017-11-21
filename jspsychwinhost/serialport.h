@@ -16,7 +16,7 @@ public:
 	SerialPort(int portNmb);
 	~SerialPort();
 
-	int readSerialPort(char *buffer, unsigned int buf_size);
+	int readSerialPort(std::string& buffer, unsigned int buf_size);
 	bool writeSerialPort(const char *buffer, unsigned int buf_size);
 	bool isConnected();
 };
