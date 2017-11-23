@@ -91,9 +91,9 @@ void SerialPort::init(const char* portNumber) {
 				}
 				else {
 
-					timeouts.ReadIntervalTimeout = MAXDWORD;
-					timeouts.ReadTotalTimeoutConstant = 50;
-					timeouts.ReadTotalTimeoutMultiplier = MAXDWORD;
+					timeouts.ReadIntervalTimeout = 5;
+					timeouts.ReadTotalTimeoutConstant = 10;
+					timeouts.ReadTotalTimeoutMultiplier = 5;
 
 					if (!SetCommTimeouts(this->handler, &timeouts)) {
 						ChromeClient::sendErrorMess("serial", "ALERT: could not set Serial port timeouts\n");
@@ -226,18 +226,25 @@ namespace WinSerialPort {
 
 		}
 		else if (action == "read") {
+			if (!serialConnection) {
+				ChromeClient::sendErrorMess("serial", "no connection to read on");
+				return false;
+			}
 			if (message["payload"].IsInt()) {
 				const unsigned int length = message["payload"].GetInt();
 				std::string read;
 				if (serialConnection->readSerialPort(read, length)) {
 					ChromeClient::sendStrToExt("{\"code\":\"serial\", \"type\":\"read\",\"result\":\""+read+"\"}");
+					return true;
 				}
 				else {
 					ChromeClient::sendErrorMess("serial", "failed to read anything");
+					return true;
 				}
 			}
 			else {
 				ChromeClient::sendErrorMess("serial", "must specify max amount of characters to read in 'payload' member");
+				return false;
 			}
 		}
 	}
